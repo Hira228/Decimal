@@ -13,14 +13,16 @@ OS = $(shell uname)
 ifeq ($(OS), Linux)
 	TEST_FLAGS = -lcheck -lsubunit -lpthread -lm
 else
-	TEST_FLAGS = -lcheck -lpthread -lm
+	TEST_FLAGS = -lcheck -lm
 endif
 
 all: clean $(LIBRARY) test $(REPORT)
 
-$(LIBRARY): ${OBJ}
-	ar rc $(LIBRARY) ${OBJ}
+$(LIBRARY): $(SRC)
+	$(CC) $(FLAGS) -c $(SRC) $(TEST_FLAGS)
+	ar rc $(LIBRARY) *.o
 	ranlib $(LIBRARY)
+
 
 $(REPORT): $(SRC_TEST) $(SRC) build_file
 	$(CC) $(FLAGS) $(GCOV_FLAGS) $(SRC_TEST) $(SRC) $(TEST_FLAGS) -o Build/$(REPORT)

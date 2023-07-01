@@ -71,5 +71,5 @@ int s21_sub_bits_with_overflow(s21_decimal value_1, s21_decimal value_2,
 int s21_div_bits_overflow(s21_decimal value_1, s21_decimal value_2,
                           s21_decimal *result, s21_decimal *remains);
 void shift_bits_number_overflow(s21_decimal *src, char c, int shift);
-void bank_rounding(s21_decimal * result, int * n, s21_decimal rem);
+void bank_rounding(s21_decimal *result, int *n, s21_decimal rem);
 #endif

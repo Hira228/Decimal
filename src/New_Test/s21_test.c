@@ -4,7 +4,7 @@
 #define FALSE 0
 #define TRUE 1
 #define SIGN 31
-#define  START_SCALE 16
+#define START_SCALE 16
 START_TEST(tests_additional) {
   s21_decimal dst1, dst2;
 
@@ -42,8 +42,7 @@ START_TEST(test_is_equal) {
   dst2.bits[2] = 0;
   dst2.bits[3] = mask_del2;
 
-  ck_assert_int_eq(s21_is_equal(dst1, dst2), FALSE);  // 1,2345678 == 1,2
-
+  ck_assert_int_eq(s21_is_equal(dst1, dst2), FALSE);
   // 1,2
   dst1.bits[0] = 12;
   dst1.bits[1] = 0;
@@ -303,7 +302,7 @@ END_TEST
 START_TEST(test_s21_from_int_to_decimal) {
   s21_decimal val;
 
-unsigned mask_minus = 1 << SIGN;
+  unsigned mask_minus = 1 << SIGN;
 
   s21_from_int_to_decimal(0, &val);
   ck_assert_int_eq(val.bits[0], 0);
@@ -354,7 +353,7 @@ START_TEST(test_s21_from_float_to_decimal) {
   ck_assert_int_eq(val.bits[0], 1282500);
   ck_assert_int_eq(val.bits[1], 0);
   ck_assert_int_eq(val.bits[2], 0);
- ck_assert_int_eq(val.bits[3], mask_del_4_minus);
+  ck_assert_int_eq(val.bits[3], mask_del_4_minus);
 
   ck_assert_int_eq(s21_from_float_to_decimal(127.08f, &val), 0);
   ck_assert_int_eq(val.bits[0], 1270800);
@@ -996,7 +995,7 @@ START_TEST(test_s21_add) {
       s21_add(dst1, dst2, &result),
       1);  // макс + 6 = функция возвращает 1 (число слишком велико);
 
-  //минус макс число
+  // минус макс число
   dst1.bits[3] = mask_minus;
   // -6
   dst2.bits[3] = mask_minus;
@@ -1281,7 +1280,7 @@ START_TEST(test_s21_sub) {
   ck_assert_int_eq(s21_is_equal(result, result_to_eq),
                    1);  // макс - 6 = 79,228,162,514,264,337,593,543,950,329;
 
-  //минус макс число
+  // минус макс число
   dst1.bits[3] = mask_minus;
   // 6
   dst2.bits[3] = 0;
@@ -1302,7 +1301,7 @@ START_TEST(test_s21_sub) {
   // ck_assert_int_eq(s21_is_equal(result, result_to_eq),
   //                  1);  // result не изменился;
 
-  //макс число
+  // макс число
   dst1.bits[3] = 0;
   // -6
   dst2.bits[3] = mask_minus;
